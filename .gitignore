@@ -1,8 +1,11 @@
 ### IntelliJ IDEA ###
-.idea
+.idea/
+target/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.gitignore
+pom.xml
 
 ### Eclipse ###
 .apt_generated

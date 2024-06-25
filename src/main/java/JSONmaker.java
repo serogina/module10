@@ -13,8 +13,8 @@ public class JSONmaker {
         if (!file.exists()) {
             System.err.println("File " + fileName + " not found.");
         } else {
-            try (FileInputStream fIO = new FileInputStream(file);
-                 Scanner fileScanner = new Scanner(fIO))
+            try (FileInputStream fIS = new FileInputStream(file);
+                 Scanner fileScanner = new Scanner(fIS))
             {
                 int counter = 0;
                 while (fileScanner.hasNext()) {

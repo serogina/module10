@@ -2,8 +2,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class CheckPhoneNumber {
+    static Pattern pattern1 = Pattern.compile("\\(\\d{3}\\) \\d{3}-\\d{4}");
+    static Pattern pattern2 = Pattern.compile("\\d{3}-\\d{3}-\\d{4}");
 
     public void checkFile(String fileName) {
         File file = new File(fileName);
@@ -11,8 +14,8 @@ public class CheckPhoneNumber {
             System.err.println("File " + fileName + " not found.");
         }
 
-        try (FileInputStream fIO = new FileInputStream(file);
-            Scanner fileScanner = new Scanner(fIO))
+        try (FileInputStream fIS = new FileInputStream(file);
+            Scanner fileScanner = new Scanner(fIS))
             {
                 while(fileScanner.hasNext()) {
                       String line = fileScanner.nextLine();
@@ -26,8 +29,7 @@ public class CheckPhoneNumber {
     }
 
     private static boolean isValidPhoneNumber(String phoneNumber) {
-        String pattern1 = "\\(\\d{3}\\) \\d{3}-\\d{4}";
-        String pattern2 = "\\d{3}-\\d{3}-\\d{4}";
-        return phoneNumber.matches(pattern1) || phoneNumber.matches(pattern2);
+        return pattern1.matcher(phoneNumber).matches() || pattern2.matcher(phoneNumber).matches();
     }
+
 }
